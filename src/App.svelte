@@ -1,7 +1,10 @@
 <script lang="ts">
+  import Header from "./components/Header.svelte";
 </script>
 
-<div class="container" />
+<div class="container">
+  <Header />
+</div>
 
 <style>
 </style>
