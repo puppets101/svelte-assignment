@@ -1,14 +1,12 @@
-<script lang="ts">
-  const myName: string = "Oscar";
-</script>
-
 <header>
-  <h1>Welcome to {myName}'s Svelte App</h1>
+  <h1>To Do List</h1>
 </header>
 
 <style>
-  h1 {
+  header {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
   }
 </style>
