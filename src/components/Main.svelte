@@ -4,9 +4,13 @@
   let description: string = "";
 
   function addTodo() {
-    todoList = [...todoList, { title: title, description: description }];
-    title = "";
-    description = "";
+    if (title.length < 15 && description.length < 30) {
+      todoList = [...todoList, { title: title, description: description }];
+      title = "";
+      description = "";
+    } else {
+      alert("Keep the TODO descripton shorter");
+    }
   }
 
   function removeTodo(todo: number) {
@@ -15,25 +19,44 @@
   }
 </script>
 
-<main>
-  <div class="form">
-    <label for="title">Title:</label>
-    <input type="text" bind:value={title} />
-    <label for="description">Description:</label>
-    <input type="text" bind:value={description} />
-    <br />
-    <button on:click={addTodo}>Add Todo</button>
-    <br />
-    <ul>
-      {#each todoList as todo, index}
-        <li class="card">
-          <span on:click={() => removeTodo(index)}>🗑</span>
-          Todo: {todo.title} Description: {todo.description}
-        </li>
-      {/each}
-    </ul>
-  </div>
-</main>
+{#if todoList.length <= 3}
+  <main>
+    <div class="form">
+      <label for="title">TODO:</label>
+      <input type="text" bind:value={title} />
+      <label for="description">NOTE:</label>
+      <input type="text" bind:value={description} />
+      <br />
+      <button on:click={addTodo}>Add Todo</button>
+      <br />
+      <ul>
+        {#each todoList as todo, index}
+          <li class="card">
+            <span on:click={() => removeTodo(index)}>🗑</span>
+            TODO: {todo.title} <br /> NOTE: {todo.description}
+          </li>
+        {/each}
+      </ul>
+    </div>
+  </main>
+{:else}
+  <main>
+    <div class="message form">
+      <p>
+        "Please complete at least one of your <br /> current tasks before adding
+        more!"
+      </p>
+      <ul>
+        {#each todoList as todo, index}
+          <li class="card">
+            <span on:click={() => removeTodo(index)}>🗑</span>
+            TODO: {todo.title} <br /> NOTE: {todo.description}
+          </li>
+        {/each}
+      </ul>
+    </div>
+  </main>
+{/if}
 
 <style>
   main {
@@ -50,6 +73,14 @@
     width: 25rem;
     background-color: #e9e9e9;
     border-radius: 5px;
+  }
+
+  .message {
+    text-align: center;
+  }
+
+  .message p {
+    margin-top: 4rem;
   }
 
   label {
@@ -78,12 +109,14 @@
   }
 
   li {
+    position: relative;
     list-style: none;
     margin-top: 0.625rem;
     font-weight: bold;
   }
 
   span {
+    display: inline-block;
     margin-right: 1rem;
   }
 
