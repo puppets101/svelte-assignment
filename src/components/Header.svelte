@@ -1,5 +1,5 @@
 <header>
-  <h1>The High Priority To Do List</h1>
+  <h1>High Priority - To Do App</h1>
 </header>
 
 <style>

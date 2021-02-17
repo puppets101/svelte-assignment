@@ -4,13 +4,9 @@
   let description: string = "";
 
   function addTodo() {
-    if (title.length < 15 && description.length < 30) {
-      todoList = [...todoList, { title: title, description: description }];
-      title = "";
-      description = "";
-    } else {
-      alert("Keep the TODO descripton shorter");
-    }
+    todoList = [...todoList, { title: title, description: description }];
+    title = "";
+    description = "";
   }
 
   function removeTodo(todo: number) {
@@ -122,6 +118,6 @@
 
   .card {
     color: #333;
-    padding: 1rem;
+    padding: 0.5rem;
   }
 </style>
