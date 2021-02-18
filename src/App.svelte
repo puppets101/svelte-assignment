@@ -7,3 +7,15 @@
   <Header />
   <Main />
 </div>
+
+<style>
+  :global(body) {
+    /* background-color: #f2eee2; */
+    color: cadetblue;
+    transition: background-color 0.3s;
+  }
+  :global(body.dark-mode) {
+    background-color: #112331;
+    color: cadetblue;
+  }
+</style>

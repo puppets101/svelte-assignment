@@ -9,4 +9,10 @@
     justify-content: center;
     align-items: center;
   }
+
+  @media (max-width: 500px) {
+    header {
+      font-size: small;
+    }
+  }
 </style>

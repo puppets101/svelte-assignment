@@ -1,12 +1,18 @@
 <script lang="ts">
+  import { fix_position } from "svelte/internal";
+
+  import Darkmode from "./Darkmode.svelte";
+
   let todoList = [];
   let title: string = "";
   let description: string = "";
 
   function addTodo() {
-    todoList = [...todoList, { title: title, description: description }];
-    title = "";
-    description = "";
+    if (title !== "") {
+      todoList = [...todoList, { title: title, description: description }];
+      title = "";
+      description = "";
+    }
   }
 
   function removeTodo(todo: number) {
@@ -27,30 +33,35 @@
       <br />
       <ul>
         {#each todoList as todo, index}
-          <li class="card">
-            <span on:click={() => removeTodo(index)}>🗑</span>
-            TODO: {todo.title} <br /> NOTE: {todo.description}
+          <li class="todo">
+            <div>
+              <span on:click={() => removeTodo(index)}>🗑</span>
+            </div>
+            <div>
+              TODO: {todo.title} <br /> NOTE: {todo.description}
+            </div>
           </li>
         {/each}
       </ul>
     </div>
+    <Darkmode />
   </main>
 {:else}
   <main>
     <div class="message form">
       <p>
-        "Please complete at least one of your <br /> current tasks before adding
-        more!"
+        Please complete at least one of your <br /> current tasks before adding more!
       </p>
       <ul>
         {#each todoList as todo, index}
-          <li class="card">
+          <li>
             <span on:click={() => removeTodo(index)}>🗑</span>
             TODO: {todo.title} <br /> NOTE: {todo.description}
           </li>
         {/each}
       </ul>
     </div>
+    <Darkmode />
   </main>
 {/if}
 
@@ -65,10 +76,16 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 30rem;
+    height: 28rem;
     width: 25rem;
     background-color: #e9e9e9;
     border-radius: 5px;
+    opacity: 0.9;
+    box-shadow: 0.5rem 0.5rem 0.5rem 1px rgba(0, 0, 0, 0.2);
+  }
+
+  .todo {
+    display: flex;
   }
 
   .message {
@@ -109,15 +126,18 @@
     list-style: none;
     margin-top: 0.625rem;
     font-weight: bold;
+    max-width: 20rem;
+    color: #333;
   }
 
   span {
-    display: inline-block;
     margin-right: 1rem;
   }
 
-  .card {
-    color: #333;
-    padding: 0.5rem;
+  @media (max-width: 500px) {
+    .form {
+      width: 20rem;
+      box-shadow: none;
+    }
   }
 </style>
