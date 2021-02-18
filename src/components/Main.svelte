@@ -54,9 +54,13 @@
       </p>
       <ul>
         {#each todoList as todo, index}
-          <li>
-            <span on:click={() => removeTodo(index)}>🗑</span>
-            TODO: {todo.title} <br /> NOTE: {todo.description}
+          <li class="todo">
+            <div>
+              <span on:click={() => removeTodo(index)}>🗑</span>
+            </div>
+            <div>
+              TODO: {todo.title} <br /> NOTE: {todo.description}
+            </div>
           </li>
         {/each}
       </ul>
@@ -88,7 +92,7 @@
     display: flex;
   }
 
-  .message {
+  .message p {
     text-align: center;
   }
 
@@ -132,6 +136,7 @@
 
   span {
     margin-right: 1rem;
+    padding: 0.5rem 0.5rem;
   }
 
   @media (max-width: 500px) {
