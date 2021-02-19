@@ -10,7 +10,7 @@
 
 <style>
   :global(body) {
-    /* background-color: #f2eee2; */
+    background-color: #f4f4f4;
     color: cadetblue;
     transition: background-color 0.3s;
   }

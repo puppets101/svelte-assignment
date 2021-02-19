@@ -1,6 +1,4 @@
 <script lang="ts">
-  import { fix_position } from "svelte/internal";
-
   import Darkmode from "./Darkmode.svelte";
 
   let todoList = [];
@@ -9,9 +7,13 @@
 
   function addTodo() {
     if (title !== "") {
-      todoList = [...todoList, { title: title, description: description }];
-      title = "";
-      description = "";
+      if (title.length < 25 && description.length < 50) {
+        todoList = [{ title: title, description: description }, ...todoList];
+        title = "";
+        description = "";
+      } else {
+        alert("Please keep it shorter");
+      }
     }
   }
 
@@ -111,6 +113,7 @@
   }
 
   button {
+    color: cadetblue;
     width: 12rem;
     border-radius: 5px;
     transition: all 1s;
@@ -118,6 +121,7 @@
 
   button:hover {
     background-color: cadetblue;
+    color: #fff;
     cursor: pointer;
   }
 

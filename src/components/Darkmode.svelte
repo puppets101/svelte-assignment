@@ -3,6 +3,7 @@
 
   function toggleBackground() {
     window.document.body.classList.toggle("dark-mode");
+
     if (darkMode) {
       darkMode = false;
     } else if (!darkMode) {
@@ -19,15 +20,11 @@
   button {
     background-color: cadetblue;
     color: white;
+    border: none;
     width: 8rem;
     margin-top: 2rem;
     border-radius: 5px;
     padding: 0.5rem;
-    transition: all 1s;
-  }
-  :global(body.dark-mode) button {
-    background-color: cadetblue;
-    color: white;
     transition: all 1s;
   }
 
